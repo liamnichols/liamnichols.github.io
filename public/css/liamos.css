@@ -9,9 +9,8 @@ figure {
 }
 
 pre {
-  white-space: pre;
-  overflow: auto;
   overflow-x: scroll;
+  white-space: pre;
 }
 
 code {
