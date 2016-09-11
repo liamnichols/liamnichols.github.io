@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Using Small Caps in UIKit
+keywords: UIFont,UIFontDescriptor,small caps,font features,TrueType,fonts,typography,iOS,watchOS,macOS,tvOS
 ---
 
 After watching the [WWDC 2016 Session 803][1]{:target="\_blank"} video on Typography and Fonts I decided that this would be a good place to start with the whole blog posts thing.
