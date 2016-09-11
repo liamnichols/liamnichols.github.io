@@ -11,6 +11,7 @@ figure {
 pre {
   overflow-x: scroll;
   white-space: pre;
+  word-wrap: normal; /* Needed for Safari */
 }
 
 code {
