@@ -62,7 +62,7 @@ let font = UIFont(descriptor: smallCapsDesc, size: systemFont.pointSize)
 Here is a breakdown of the above code:
 
 1. Get an existing font descriptor from a font of our choice.
-2. Create a new font descriptor adding additional attributes via the `addingAttributes(_ attributes: [String:Any])` method.
+2. Create a new font descriptor adding additional attributes via the `addingAttributes(_:)` method.
 3. Specify the additional font features we would like via the `UIFontDescriptorFeatureSettingsAttribute` attribute key.
 4. Create a new font object with the new font descriptor and the original point size.
 
