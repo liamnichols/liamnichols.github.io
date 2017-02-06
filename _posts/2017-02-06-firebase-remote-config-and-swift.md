@@ -42,9 +42,6 @@ The interface for my `Config` class is pretty simple:
         /// The maximum number of items that are allowed in this mystery app
         let maxItemCount: Int
 
-        /// The backing remote config instance
-        private let remoteConfig = FIRRemoteConfig.remoteConfig()
-
         /// The initialiser is private as intended use is via the `shared` static property.
         private init() {
 
@@ -58,7 +55,9 @@ This is intentional to ensure that the values in `Config` are all fetched from a
 
 As a result, the initialiser looks like this:
 
+
     // 1. Configure for dev mode if we need it, otherwise a 1 hour expiration duration
+    let remoteConfig = FIRRemoteConfig.remoteConfig()
     #if DEBUG
         let expirationDuration: TimeInterval = 0
         remoteConfig.configSettings = FIRRemoteConfigSettings(developerModeEnabled: true)!
