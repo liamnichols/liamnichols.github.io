@@ -26,6 +26,8 @@ It would be a lot nicer if we could do something like this instead:
 
     let count = Config.shared.maxItemCount
 
+------
+
 # Config.swift
 
 The interface for my `Config` class is pretty simple:
@@ -96,6 +98,8 @@ There are still a few non-swifty looking bits here because I'm not using any for
 * The rest of my code looks fabulous (kinda).
 
 The complete class can be found [here][4] if you wish to grab a copy. Enjoy!
+
+------
 
 ### Note
 
