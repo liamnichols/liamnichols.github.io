@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Firebase Remote Config and Swift
-keywords: firebase,remote-config,swift,iOS,watchOS,macOS,tvOS
+keywords: firebase, firebase remote config, swift, iOS, watchOS, macOS, tvOS
 ---
 
 So you've seen Firebase Remote Config and decided that it would go great in your Swift project? You're right, it will but if like me you've noticed that the design of the SDK doesn't play very well with all of your other beautiful looking strictly typed Swift code then this post is for you.

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Introduction
+keywords: introduction
 ---
 
 ### The start of something new

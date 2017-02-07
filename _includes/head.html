@@ -9,7 +9,7 @@
   <!-- Page Metadata for SEO and Stuff -->
   <title>{% if page.title == "Home" %}{{ site.title }} &middot; {{ site.tagline }}{% else %}{{ page.title }} &middot; {{ site.title }}{% endif %}</title>
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
-  <meta name="keywords" content="{{ page.keywords | strip_html | strip_whitespace | strip_newlines }}">
+  <meta name="keywords" content="{{ page.keywords }}">
 
   <!-- CSS -->
   <link rel="stylesheet" href="{{ site.baseurl }}/public/css/poole.css">
