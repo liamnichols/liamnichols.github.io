@@ -13,7 +13,6 @@ google_analytics_tracking_id:   UA-83930015-1
 # Gems
 gems:
   - jekyll-paginate
-  - jekyll-sitemap
   - jekyll-seo-tag
 
 # About/contact
