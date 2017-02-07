@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://liamnichols.github.io/sitemap.xml
