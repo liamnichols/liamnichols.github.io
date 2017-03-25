@@ -17,3 +17,7 @@ pre {
 code {
   color: #24292e;
 }
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "PT Serif", Georgia, "Times New Roman", serif;
+}
