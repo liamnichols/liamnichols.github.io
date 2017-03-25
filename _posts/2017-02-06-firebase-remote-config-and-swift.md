@@ -10,9 +10,9 @@ _**Note:** I don't cover setting up Firebase in this post, just using `FIRRemote
 
 Lets take this basic example:
 
-{% highlight swift %}
+``` swift
 let count = FIRRemoteConfig.remoteConfig()["maximum_item_count"].numberValue?.intValue ?? 10
-{% endhighlight %}
+```
 
 There are a few problems here:
 
@@ -26,9 +26,9 @@ There are a few problems here:
 
 It would be a lot nicer if we could do something like this instead:
 
-{% highlight swift %}
+``` swift
 let count = Config.shared.maxItemCount
-{% endhighlight %}
+```
 
 ------
 
@@ -36,7 +36,8 @@ let count = Config.shared.maxItemCount
 
 The interface for my `Config` class is pretty simple:
 
-{% highlight swift %}
+``` swift
+import Foundation
 import FirebaseRemoteConfig
 
 final class Config {
@@ -53,7 +54,7 @@ final class Config {
         ...
     }
 }
-{% endhighlight %}
+```
 
 The idea is simple: Initialise all the properties on the shared instance after performing the initial fetch and then trigger another fetch after so that we can be ready to load any changes **the next time the app launches**.  
 
@@ -62,7 +63,7 @@ This is intentional to ensure that the values in `Config` are all fetched from a
 As a result, the initialiser looks like this:
 
 
-{% highlight swift %}
+``` swift
 // 1. Configure for dev mode if we need it, otherwise a 1 hour expiration duration
 let remoteConfig = FIRRemoteConfig.remoteConfig()
 #if DEBUG
@@ -87,7 +88,7 @@ self.maxItemCount = remoteConfig["maximum_item_count"].numberValue!.intValue
 remoteConfig.fetch(withExpirationDuration: expirationDuration) { status, _ in
     print("[Config] Fetch completed with status:", status, "(\(status.rawValue))")
 }
-{% endhighlight %}
+```
 
 Here is a breakdown of what we are doing:
 
@@ -112,7 +113,7 @@ The complete class can be found [here][4] if you wish to grab a copy. Enjoy!
 
 Due to the nature of Swift, the static `shared` property won't be initialised until you try to access it. This means that it might be useful doing something like the following in your AppDelegate if you want to ensure that the next fetch is performed as soon as possible:
 
-{% highlight swift %}
+``` swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
     FIRApp.configure()
@@ -120,7 +121,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 
     return true
 }
-{% endhighlight %}
+```
 
 I'm sure that could be done in a nicer way but I'll let you figure that out :)
 

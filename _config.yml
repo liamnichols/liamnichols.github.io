@@ -6,8 +6,12 @@ description:                    ''
 url:                            https://liamnichols.github.io
 baseurl:                        ''
 paginate:                       5
-highlighter:                    rouge
 google_analytics_tracking_id:   UA-83930015-1
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 
 
 # Gems

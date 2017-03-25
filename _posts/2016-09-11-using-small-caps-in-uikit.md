@@ -46,7 +46,7 @@ To actually take advantage of the font features in code you can do this at a fai
 
 Lets take a look at a simple implementation:
 
-{% highlight swift %}
+``` swift
 let systemFont = UIFont.systemFont(ofSize: 24.0, weight: UIFontWeightLight)
 let smallCapsDesc = systemFont.fontDescriptor.addingAttributes([
     UIFontDescriptorFeatureSettingsAttribute: [
@@ -57,7 +57,7 @@ let smallCapsDesc = systemFont.fontDescriptor.addingAttributes([
     ]
 ])
 let font = UIFont(descriptor: smallCapsDesc, size: systemFont.pointSize)
-{% endhighlight %}
+```
 
 Here is a breakdown of the above code:
 
@@ -97,7 +97,7 @@ Numbers and punctuation will also be treated as uppercase letters when a small c
 You might have noticed that code example above to achieve small caps is kind of bloated when you compare it to a one line `UIFont` initialiser. Below you can find a sample extension I've put together to make this a little bit simpler.
 
 <!-- <script src="https://gist.github.com/liamnichols/56736b4988c57a33ad70086a0dc6018b.js"></script> -->
-{% highlight swift %}
+``` swift
 public extension UIFont {
 
     /// Helper method to create a UIFont with updated attributes applied to the UIFontDescriptor
@@ -139,7 +139,7 @@ public extension UIFont {
         ])
     }
 }
-{% endhighlight %}
+```
 
 If you have any suggestions to improve the extension then please leave a comment on [the gist][4]{:target="\_blank"}.
 
