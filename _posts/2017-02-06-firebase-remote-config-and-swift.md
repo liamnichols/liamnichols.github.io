@@ -10,7 +10,9 @@ _**Note:** I don't cover setting up Firebase in this post, just using `FIRRemote
 
 Lets take this basic example:
 
-    let count = FIRRemoteConfig.remoteConfig()["maximum_item_count"].numberValue?.intValue ?? 10
+{% highlight swift %}
+let count = FIRRemoteConfig.remoteConfig()["maximum_item_count"].numberValue?.intValue ?? 10
+{% endhighlight %}
 
 There are a few problems here:
 
@@ -24,7 +26,9 @@ There are a few problems here:
 
 It would be a lot nicer if we could do something like this instead:
 
-    let count = Config.shared.maxItemCount
+{% highlight swift %}
+let count = Config.shared.maxItemCount
+{% endhighlight %}
 
 ------
 
@@ -32,22 +36,24 @@ It would be a lot nicer if we could do something like this instead:
 
 The interface for my `Config` class is pretty simple:
 
-    import FirebaseRemoteConfig
+{% highlight swift %}
+import FirebaseRemoteConfig
 
-    final class Config {
+final class Config {
 
-        /// The shared instance of config to use
-        static let shared: Config = Config()
+    /// The shared instance of config to use
+    static let shared: Config = Config()
 
-        /// The maximum number of items that are allowed in this mystery app
-        let maxItemCount: Int
+    /// The maximum number of items that are allowed in this mystery app
+    let maxItemCount: Int
 
-        /// The initialiser is private as intended use is via the `shared` static property.
-        private init() {
+    /// The initialiser is private as intended use is via the `shared` static property.
+    private init() {
 
-            ...
-        }
+        ...
     }
+}
+{% endhighlight %}
 
 The idea is simple: Initialise all the properties on the shared instance after performing the initial fetch and then trigger another fetch after so that we can be ready to load any changes **the next time the app launches**.  
 
@@ -56,30 +62,32 @@ This is intentional to ensure that the values in `Config` are all fetched from a
 As a result, the initialiser looks like this:
 
 
-    // 1. Configure for dev mode if we need it, otherwise a 1 hour expiration duration
-    let remoteConfig = FIRRemoteConfig.remoteConfig()
-    #if DEBUG
-        let expirationDuration: TimeInterval = 0
-        remoteConfig.configSettings = FIRRemoteConfigSettings(developerModeEnabled: true)!
-    #else
-        let expirationDuration: TimeInterval = 3600
-    #endif
+{% highlight swift %}
+// 1. Configure for dev mode if we need it, otherwise a 1 hour expiration duration
+let remoteConfig = FIRRemoteConfig.remoteConfig()
+#if DEBUG
+    let expirationDuration: TimeInterval = 0
+    remoteConfig.configSettings = FIRRemoteConfigSettings(developerModeEnabled: true)!
+#else
+    let expirationDuration: TimeInterval = 3600
+#endif
 
-    // 2. Set our default values and keys
-    remoteConfig.setDefaults([
-        "maximum_item_count": 42 as NSNumber
-    ])
+// 2. Set our default values and keys
+remoteConfig.setDefaults([
+    "maximum_item_count": 42 as NSNumber
+])
 
-    // 3. Activate any fetched values before we read anything back
-    remoteConfig.activateFetched()
+// 3. Activate any fetched values before we read anything back
+remoteConfig.activateFetched()
 
-    // 4. Now set the properties on config based on what we have currently
-    self.maxItemCount = remoteConfig["maximum_item_count"].numberValue!.intValue
+// 4. Now set the properties on config based on what we have currently
+self.maxItemCount = remoteConfig["maximum_item_count"].numberValue!.intValue
 
-    // 5. Perform the next fetch so that it's ready when we re-launch
-    remoteConfig.fetch(withExpirationDuration: expirationDuration) { status, _ in
-        print("[Config] Fetch completed with status:", status, "(\(status.rawValue))")
-    }
+// 5. Perform the next fetch so that it's ready when we re-launch
+remoteConfig.fetch(withExpirationDuration: expirationDuration) { status, _ in
+    print("[Config] Fetch completed with status:", status, "(\(status.rawValue))")
+}
+{% endhighlight %}
 
 Here is a breakdown of what we are doing:
 
@@ -104,13 +112,15 @@ The complete class can be found [here][4] if you wish to grab a copy. Enjoy!
 
 Due to the nature of Swift, the static `shared` property won't be initialised until you try to access it. This means that it might be useful doing something like the following in your AppDelegate if you want to ensure that the next fetch is performed as soon as possible:
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+{% highlight swift %}
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        FIRApp.configure()
-        _ = Config.shared
+    FIRApp.configure()
+    _ = Config.shared
 
-        return true
-    }
+    return true
+}
+{% endhighlight %}
 
 I'm sure that could be done in a nicer way but I'll let you figure that out :)
 
