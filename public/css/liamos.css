@@ -3,6 +3,15 @@
   display: block;
 }
 
+.screenshot {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 375.0px;
+  height: auto;
+  border-style: solid;
+}
+
 figure {
   -webkit-margin-start: 0px;
   -webkit-margin-end: 0px;
