@@ -4,7 +4,7 @@ title: Using UIViewController's viewIsAppearing method in Xcode 14 and earlier
 keywords: xcode14, uikit, viewIsAppearing, wwdc2023, uiviewcontroller, xcode15, ios17
 ---
 
-During WWDC 2023, Apple announced the introduction of a new method on `UIViewController` called [`viewIsAppearing(_:)`](https://developer.apple.com/documentation/uikit/uiviewcontroller/4195485-viewisappearing).
+During WWDC 2023, Apple announced a new method on `UIViewController` called [`viewIsAppearing(_:)`](https://developer.apple.com/documentation/uikit/uiviewcontroller/4195485-viewisappearing).
 
 If you've ever spent way too much time trying to perfect appearance animations within your apps, this new method may just be the lifecycle callback that you had been looking for since it's called prior to the actual appearance on-screen but after receiving the initial layout and traits.
 
@@ -80,6 +80,26 @@ Because the header file is checking for the `__IPHONE_17_0` definition, which is
 >
 > In this instance, we don't have these same concerns because we know that Apple is making this API public moving forward. But you should still remember that this API is technically _private_ today meaning that there is still a small chance that it might be rejected during App Review. I haven't yet verified myself that apps currently referencing this API won't be rejected, so submit for review at your own discretion.
 
+### Alternative Approach
+
+Alternatively, if you work with a fully Swift-based project (i.e Swift Playgrounds) or don't want the additional complexity of managing a bridging header, you could also achieve similar results with an extension:
+
+```swift
+#if swift(<5.9) // A similar check for the iOS 17 SDK assuming you don't use custom toolchains
+extension UIViewController {
+    @objc
+    @available(iOS, introduced: 13.0)
+    @available(tvOS, introduced: 13.0)
+    func viewIsAppearing(_ animated: Bool) {
+        assertionFailure("The UIKit implementation was not called as expected")
+    }
+}
+#endif
+```
+
+This approach works in a similar way by exposing an `@objc` method called `viewIsAppearing(_:)` for your app, but it relies on a [method name clash](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/CustomizingExistingClasses/CustomizingExistingClasses.html#//apple_ref/doc/uid/TP40011210-CH6-SW4) for the super calls to actually call the UIKit implementation rather than the one that you defined above.
+
+I've tried this in a test project and it seems to work as expected, but there is a small risk involved here which is why it would be more preferred to define the Objective-C header instead if possible.
 
 
 
