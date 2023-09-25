@@ -18,6 +18,7 @@ kramdown:
 gems:
   - jekyll-paginate
   - jekyll-seo-tag
+  - jekyll-feed
 
 # About/contact
 author:
