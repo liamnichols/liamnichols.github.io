@@ -1,27 +1,26 @@
 
 # Setup
-title:                          liamOS
-tagline:                        'An iOS development blog'
-description:                    ''
-url:                            https://liamnichols.eu
-baseurl:                        ''
-paginate:                       5
-google_analytics_tracking_id:   UA-83930015-1
+title: liamOS
+tagline: 'An iOS development blog'
+description: ''
+url: https://liamnichols.eu
+baseurl: ''
+paginate: 5
+google_analytics: G-YBPYGMTSCT
 markdown: kramdown
 highlighter: rouge
 kramdown:
   input: GFM
   syntax_highlighter: rouge
 
-
 # Gems
 gems:
-  - jekyll-paginate
-  - jekyll-seo-tag
-  - jekyll-feed
+- jekyll-paginate
+- jekyll-seo-tag
+- jekyll-feed
 
 # About/contact
 author:
-  name:               Liam Nichols
-  url:                https://twitter.com/liamnichols_
-  email:              liam.nichols.ln@gmail.com
+  name: Liam Nichols
+  url: https://twitter.com/liamnichols_
+  email: liam.nichols.ln@gmail.com
