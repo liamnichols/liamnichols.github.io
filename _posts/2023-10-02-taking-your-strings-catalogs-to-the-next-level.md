@@ -154,7 +154,7 @@ By doing so, we instantly gain two benefits:
 
 In the String Catalog above, we've manually added a string with the key `settingsHeading` by clicking the **+** button at the top of the editor. You can tell that this string was manually added because the attributes inspector (right) shows it as **Manually** managed.
 
-> **Note:** If a string is **Automatically** managed, it Xcode will not allow you to edit it's values in the source language within the Strings Catalog and it will delete the string if it cannot find the key referenced at compile time.
+> **Note:** If a string is **Automatically** managed, Xcode will not allow you to edit its values in the source language within the Strings Catalog and it will delete the string if it cannot find the key referenced at compile time.
 
 The default value of this string (_Settings_) and the comment remain defined in the Strings Catalog, so when we can reference the string in our UI code, we can do so like the following:
 
@@ -218,7 +218,7 @@ This is a great solution that is relatively straightforward to implement. It loo
 
 ## But what about the arguments?
 
-We haven't looked at passing arguments into localized strings yet, so lets go back to teh start quickly:
+We haven't looked at passing arguments into localized strings yet, so lets go back to the start quickly:
 
 ```swift
 Text("There are \(items.count) pending posts")
