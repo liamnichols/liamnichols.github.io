@@ -45,15 +45,19 @@ If you've never submitted a Feedback Request before, or you want help with what 
       </p>
 
       <p>
-        1. Provide a tool or documentation to locally automate the analysis of required API usage - The warning emails from App Store Connect demonstrate that this is possible, so please provide a tool to assist developers in building Privacy Manifests instead of having to manually audit code against the documentation (which is subject to change). This tool should be usable by both app developers and third-party SDK developers.
+        1. Complete the integration within Xcode and Swift Package Manager - Currently, manifests provided by third party developers have no way of being incorporated into the App's main PrivacyManifest.xcprivacy file when dependencies are statically linked to a target. It seems that the only workaround is for the developer to manually copy the contents of the third party Privacy Manifest into their own which is not sustainable.
       </p>
 
       <p>
-        2. Provide more assistance to third-party dependency managers - CocoaPods is still used by hundreds of thousands of developers, and it is critical that this tool properly supports Privacy Manifests. Please make more effort to support CocoaPods and other third-party tools by offering support via Developer Relations and/or sponsoring any required work.
+        2. Provide a tool or documentation to locally automate the analysis of required API usage - The warning emails from App Store Connect demonstrate that this is possible, so please provide a tool to assist developers in building Privacy Manifests instead of having to manually audit code against the documentation (which is subject to change). This tool should be usable by both app developers and third-party SDK developers.
       </p>
 
       <p>
-        3. Provide more documentation - Ensuring that Privacy Manifests are properly supplied and configured for first and third-party code is still not simple enough. Please provide more documentation, technical notes, and troubleshooting guides for ensuring that Privacy Manifests are set up correctly. There is currently no good resource on the internet for this, and developers are finding themselves overwhelmed having to figure it out against a deadline.
+        3. Provide more assistance to third-party dependency managers - CocoaPods is still used by hundreds of thousands of developers, and it is critical that this tool properly supports Privacy Manifests. Please make more effort to support CocoaPods and other third-party tools by offering support via Developer Relations and/or sponsoring any required work.
+      </p>
+
+      <p>
+        4. Provide more documentation - Ensuring that Privacy Manifests are properly supplied and configured for first and third-party code is still not simple enough. Please provide more documentation, technical notes, and troubleshooting guides for ensuring that Privacy Manifests are set up correctly. There is currently no good resource on the internet for this, and developers are finding themselves overwhelmed having to figure it out against a deadline.
       </p>
 
       <p>
@@ -62,3 +66,7 @@ If you've never submitted a Feedback Request before, or you want help with what 
     </div>
 
 5. Click **Submit** and hope for the best
+
+---
+
+_Updated on 2024-03-22 at 15:44 CET: Added additional request to the list of actions._
